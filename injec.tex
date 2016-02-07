@@ -1,0 +1,34 @@
+\section{Injection}
+
+\begin{frame}{Injection d'objets dynamiques dans un programme}
+	\begin{alertblock}{But}
+	Modifier le comportement d'un programme ou rajouter des fonctionnalités.
+	\end{alertblock}
+	
+    \begin{block}{Approche sur Windows}
+    	\begin{itemize}
+		 \item Modification de la clef de registre HKEY\_LOCAL\_MACHINE\textbackslash SYSTEM\textbackslash	  CurrentControlSet\textbackslash Control\textbackslash \\ Session Manager\textbackslash AppCertDLLs
+		
+		\item Utilisation de la fonction CreateRemoteThread : charge un programme dans le même espace mémoire
+		d'un autre processus.
+	    \end{itemize}
+    \end{block}	
+		
+	\end{frame}
+
+\begin{frame}{Injection d'objets dynamiques dans un programme}
+
+	\begin{block}{Approche sur Linux}
+	LD\_PRELOAD, variable d'environnement permettant de charger arbitrairement une librairie dans un programme 	(possibilité de remplacement)
+	
+	
+	\begin{block}{Utilisation}
+    	\begin{itemize}
+		\item LD\_PRELOAD=<injecté.so> ./cible
+	    \end{itemize}
+	\end{block}
+	
+	
+	\end{block}
+	
+\end{frame}

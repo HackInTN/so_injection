@@ -1,0 +1,28 @@
+\section{Petits rappels de compilation}
+
+
+\begin{frame}{Le processus de compilation}
+	\begin{itemize}
+		\item Analyses (lexicale, syntaxique, sémantique)
+		\item Génération de  code intermédiaire, optimisations...
+		\item Génération des fichiers objets
+		\item Edition des liens
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Edition des liens}
+	\begin{itemize}
+		\item Objectif : créer un éxécutable à partir de fichiers objets (.o,.obj,.a)
+		\item Les fichiers objets contiennent du code et la table de leurs symboles
+		\item Trois cas:
+		\begin{itemize}
+		
+		\item Edition de liens entre plusieurs objets internes au programme \\
+		    ex: A.o $\rightarrow$ B.o $\rightarrow$ C.a
+		\item Edition statique de liens avec des objets externes (sur l'OS) \\
+		    ex: A.o $\rightarrow$ /usr/lib/x86\_64-linux-gnu/libcrypt.a
+		\item Edition dynamique de liens avec des objets externes (chargés à l'exécution) \\
+			ex: A.o $\rightarrow$ /lib/i386-linux-gnu/libc.so.6
+		\end{itemize}
+	\end{itemize}
+\end{frame}
