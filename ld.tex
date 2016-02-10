@@ -1,5 +1,6 @@
 \section{Les bibliothèques dynamiques}
 
+\frame{\tableofcontents[currentsection]}
 
 \begin{frame}{Où ?}
 	\begin{itemize}
@@ -12,8 +13,9 @@
 \begin{frame}{Quelques commandes utiles}
 	\begin{itemize}
 	    \item file <executable>: permet de savoir si le programme utilise des librairies dynamiques
-		\item ldd <executable>: affiche la liste des dépendances dynamiques
+		\item ldd <binaire>: affiche la liste des dépendances dynamiques
 		\item ltrace <executable>: permet d'intercepter les appels à des librairies dynamiques
+		\item readelf -s <binaire>: affiche la liste des symboles.
 		\item gcc -shared -fPIC prog.c -o prog.so  : compiler un .so sur linux/gcc
 	\end{itemize}
 \end{frame}

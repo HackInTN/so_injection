@@ -7,7 +7,7 @@
 \usepackage{lmodern}
 % \usepackage{forloop}
 \usepackage{multicol}
-	\usepackage{animate}
+\usepackage{animate}
 \usepackage{default}
 \usepackage{listing}
 
@@ -19,6 +19,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 
+\usepackage{listings}
 % \usepackage{polyglossia}
 % \usepackage{listings}
 % \usepackage{ulem}
@@ -38,7 +39,11 @@
 \usecolortheme{cormorant}
 \useoutertheme{infolines}
 
-
+\lstset{language=C,
+                basicstyle=\ttfamily,
+                keywordstyle=\color{cyan}\ttfamily,
+                stringstyle=\color{magenta}\ttfamily,
+}                
 
 \title[s.o. injection]{H4ck 1n TN}
 \subtitle{Injection d'objets partagés}
@@ -48,13 +53,13 @@
 
 \begin{document}
 
-
 \begin{frame}
 \titlepage
 \end{frame} 
 
 \input{rappels}
 \input{ld}
+\input{rappels_prog}
 \input{injec}
 \input{chall}
 

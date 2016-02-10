@@ -1,6 +1,10 @@
-\section{Injection}
+\section{Injection d'objets dynamiques dans un programme}
 
-\begin{frame}{Injection d'objets dynamiques dans un programme}
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}{Les différentes méthodes}
+
 	\begin{alertblock}{But}
 	Modifier le comportement d'un programme ou rajouter des fonctionnalités.
 	\end{alertblock}
@@ -10,25 +14,66 @@
 		 \item Modification de la clef de registre HKEY\_LOCAL\_MACHINE\textbackslash SYSTEM\textbackslash	  CurrentControlSet\textbackslash Control\textbackslash \\ Session Manager\textbackslash AppCertDLLs
 		
 		\item Utilisation de la fonction CreateRemoteThread : charge un programme dans le même espace mémoire
-		d'un autre processus.
+		qu'un autre processus.
 	    \end{itemize}
     \end{block}	
 		
-	\end{frame}
+\end{frame}
 
-\begin{frame}{Injection d'objets dynamiques dans un programme}
+\begin{frame}{Les différentes méthodes}
 
 	\begin{block}{Approche sur Linux}
-	LD\_PRELOAD, variable d'environnement permettant de charger arbitrairement une librairie dans un programme 	(possibilité de remplacement)
 	
-	
-	\begin{block}{Utilisation}
-    	\begin{itemize}
-		\item LD\_PRELOAD=<injecté.so> ./cible
-	    \end{itemize}
-	\end{block}
-	
+	\begin{itemize}
+		\item LD\_PRELOAD, variable d'environnement permettant de charger arbitrairement une librairie dans un programme (possibilité de remplacement)\\Avantages: très difficile à détecter et à interdire.
+		\item ptrace, permet notamment d'injecter des objets dans un processus en cours d'exécution (sous certaines conditions)
+	\end{itemize}
 	
 	\end{block}
 	
+\end{frame}
+
+\begin{frame}{LD\_PRELOAD: How to}
+
+	\begin{block}{On a un exécutable "lol":}
+		\lstinputlisting[language=C]{lol.c}
+	\end{block}
+    
+    > gcc lol.c -o lol \\ > ./lol \\ > LOL!
+\end{frame}
+
+\begin{frame}{LD\_PRELOAD: How to}
+
+	\begin{block}{On a une librairie "hook.so":}
+		\lstinputlisting[language=C]{hook1.c}
+	\end{block}
+    
+    > gcc -shared -fPIC -o hook.so hook.c \\
+    > LD\_PRELOAD=./hook.so ./lol \\
+    > Hooked!
+\end{frame}
+
+\begin{frame}{LD\_PRELOAD: How to}
+
+	\begin{block}{On peut aussi retrouver la fonction originelle}
+		\lstinputlisting[language=C]{hook2.c}
+	\end{block}
+    
+    > gcc -shared -fPIC -o hook.so hook.c -ldl -D\_GNU\_SOURCE \\
+    > LD\_PRELOAD=./hook.so ./lol \\
+    > Hooked!\\
+    > LOL!
+\end{frame}
+
+
+\begin{frame}{LD\_PRELOAD: How to}
+
+	\begin{block}{Ou appeler une fonction au lancement du programme}
+		\lstinputlisting[language=C]{init.c}
+	\end{block}
+    
+    > gcc -shared -fPIC -o onInit.so onInit.c \\
+    > LD\_PRELOAD=./onInit.so ./lol \\
+    > Started!\\
+    > LOL!
 \end{frame}

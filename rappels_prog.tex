@@ -1,0 +1,28 @@
+\section{Petits rappels de programmation}
+
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}{L'interface dlfcn.h}
+
+\begin{itemize}
+	\item void *dlopen(const char *filename, int flag);
+	\item char *dlerror();
+	\item void *dlsym(void *handle, const char *symbol);
+	\item int dlclose(void *handle);
+	\item linkage avec -ldl (ou utiliser \_\_libc\_dl*)
+\\
+
+\begin{block}{En Python}
+Voir le module ctypes
+\end{block}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Utilisation d'un pointeur sur fonction}
+
+	\lstinputlisting[language=C]{fptr.c}
+
+\end{frame}
